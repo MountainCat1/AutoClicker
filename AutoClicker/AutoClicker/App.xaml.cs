@@ -25,12 +25,12 @@ namespace AutoClicker
             
             KeyboardHook.SetHook();
             
-            KeyboardHook.KeyPressed += (sender, key) =>
+            KeyboardHook.KeyPressed += (key) =>
             {
                 Console.WriteLine($"Key pressed: {key}");
             };
             
-            KeyboardHook.KeyReleased += (sender, key) =>
+            KeyboardHook.KeyReleased += (key) =>
             {
                 Console.WriteLine($"Key released: {key}");
             };

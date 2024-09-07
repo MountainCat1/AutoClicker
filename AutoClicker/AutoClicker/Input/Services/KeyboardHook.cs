@@ -50,16 +50,16 @@ public class KeyboardHook
     private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
     // Event declarations
-    public static event EventHandler<Key> KeyPressed;
-    public static event EventHandler<Key> KeyReleased;
+    public static event Action<Key> KeyPressed;
+    public static event Action<Key> KeyReleased;
 
     private static void OnKeyPressed(Key key)
     {
-        KeyPressed?.Invoke(null, key);
+        KeyPressed?.Invoke(key);
     }
 
     private static void OnKeyReleased(Key key)
     {
-        KeyReleased?.Invoke(null, key);
+        KeyReleased?.Invoke(key);
     }
 }

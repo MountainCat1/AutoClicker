@@ -82,18 +82,16 @@ namespace AutoClicker.Services
         {
             try
             {
-                var interval = ClickInterval;
-                
-                if(IntervalRandomness > 0)
-                {
-                    var intervalRandomness = new Random();
-                    interval += intervalRandomness.Next(-IntervalRandomness, IntervalRandomness);
-                }
-
-                Console.WriteLine($"Clicking every {interval}ms");
-                
                 while (IsActive && !cancellationToken.IsCancellationRequested)
                 {
+                    var interval = ClickInterval;
+                
+                    if(IntervalRandomness > 0)
+                    {
+                        var intervalRandomness = new Random();
+                        interval += intervalRandomness.Next(-IntervalRandomness, IntervalRandomness);
+                    }
+
                     if (Filter != null && !Filter())
                     {
                         await Task.Delay(interval, cancellationToken); // Sleep for the click interval

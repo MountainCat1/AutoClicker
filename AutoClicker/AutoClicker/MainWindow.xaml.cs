@@ -43,7 +43,7 @@ namespace AutoClicker
             KeyboardHook.KeyPressed += OnKeyPressed;
         }
 
-        private void OnKeyPressed(object? sender, Key e)
+        private void OnKeyPressed(Key e)
         {
             var keybinds = Settings.Singleton.KeyBinds;
             
