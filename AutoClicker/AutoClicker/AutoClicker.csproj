@@ -9,7 +9,7 @@
     
     <PropertyGroup>
         <PublishSingleFile>true</PublishSingleFile>
-        <PublishTrimmed>false</PublishTrimmed> <!-- Disable trimming -->
+        <PublishTrimmed>truw</PublishTrimmed> <!-- Disable trimming -->
         <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- Or win-x86, depending on your architecture -->
         <SelfContained>true</SelfContained> <!-- This bundles the .NET runtime -->
         <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile> <!-- Optional: compress the output executable -->
@@ -20,6 +20,12 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="Audio\On.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="settings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="settings_2.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>

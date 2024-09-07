@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using AutoClicker.Configuration;
 using AutoClicker.Services;
 using AutoClicker.Input.Enums;
 using AutoClicker.Input.Services;
@@ -46,9 +47,9 @@ namespace AutoClicker
         private void RegisterHotKeys()
         {
             var windowHandle = new WindowInteropHelper(this).Handle;
-            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, KeyCode.F6, ToggleClickerHotkeyId,
+            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, Settings.Singleton.KeyBinds.Toggle, ToggleClickerHotkeyId,
                 ToggleAutoClicker);
-            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, KeyCode.F5, ToggleMaximizeHotkeyId,
+            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, Settings.Singleton.KeyBinds.Show, ToggleMaximizeHotkeyId,
                 ToggleMaximize);
         }
 
