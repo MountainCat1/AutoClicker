@@ -14,7 +14,6 @@ namespace AutoClicker.Services
         
         public Func<bool>? Filter { get; set; }
 
-
         event Action<bool> Toggled;
     }
 
