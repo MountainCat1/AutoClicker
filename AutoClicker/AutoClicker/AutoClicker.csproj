@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishTrimmed>false</PublishTrimmed> <!-- Disable trimming -->
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- Or win-x86, depending on your architecture -->
+        <SelfContained>true</SelfContained> <!-- This bundles the .NET runtime -->
+        <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile> <!-- Optional: compress the output executable -->
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <None Update="Audio\Off.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Audio\On.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

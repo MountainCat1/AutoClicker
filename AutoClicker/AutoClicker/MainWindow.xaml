@@ -1,0 +1,75 @@
+﻿<Window x:Class="AutoClicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Auto Clicker" Height="450" Width="800"
+        Background="#FFFAFAFA" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" 
+        WindowStyle="ThreeDBorderWindow">
+    
+    <!-- Create a Grid to center the content vertically -->
+    <Grid>
+        <!-- Add a border to give rounded corners -->
+        <Border CornerRadius="15" Background="White" Padding="20" BorderBrush="#FFBDBDBD" BorderThickness="1">
+            <Grid>
+                <!-- Define three rows: one for top spacing, one for the content, one for bottom spacing -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" /> <!-- Top space (flexible) -->
+                    <RowDefinition Height="Auto" /> <!-- Content -->
+                    <RowDefinition Height="*" /> <!-- Bottom space (flexible) -->
+                </Grid.RowDefinitions>
+
+                <!-- Centered StackPanel for the auto-clicker toggle and status -->
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <!-- Modern toggle button -->
+                    <Button Name="StartButton" Content="Toggle Auto Clicker" Width="200" Height="50" 
+                            Background="#FF4CAF50" Foreground="White" FontSize="16" 
+                            BorderThickness="0" Margin="0,10,0,10"
+                            Cursor="Hand" 
+                            HorizontalAlignment="Center" Click="ToggleButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    CornerRadius="10" BorderBrush="Transparent">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Status label with modern style -->
+                    <Label Name="StatusLabel" Content="Status: Off" FontSize="18" FontWeight="Bold" 
+                           Foreground="#FF4CAF50" Margin="0,10,0,0" HorizontalAlignment="Center" />
+
+                    <!-- Modern input field for clicks per second -->
+                    <TextBlock Name="ClickPerSecondTextBlock" Text="Enter clicks per second:" FontSize="14" Foreground="#FF616161" 
+                               Margin="0,20,0,10" HorizontalAlignment="Center" />
+                    
+                    <TextBox x:Name="UserInput" Width="200" Height="35" FontSize="14" 
+                             BorderBrush="#FFBDBDBD" BorderThickness="1" Background="#FFF5F5F5" 
+                             HorizontalAlignment="Center" Padding="5" 
+                             PreviewTextInput="UserInput_PreviewTextInput"
+                             TextChanged="UserInput_TextChanged"/>
+
+                    <!-- New Input for Interval Randomness -->
+                    <TextBlock Name="IntervalRandomnessTextBlock" Text="Enter interval randomness (ms):" FontSize="14" Foreground="#FF616161" 
+                               Margin="0,20,0,10" HorizontalAlignment="Center" />
+                    
+                    <TextBox x:Name="IntervalRandomnessInput" Width="200" Height="35" FontSize="14" 
+                             BorderBrush="#FFBDBDBD" BorderThickness="1" Background="#FFF5F5F5" 
+                             HorizontalAlignment="Center" Padding="5" 
+                             PreviewTextInput="IntervalRandomness_PreviewTextInput"
+                             TextChanged="IntervalRandomness_TextChanged"/>
+                    
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
