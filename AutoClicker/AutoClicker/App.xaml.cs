@@ -22,6 +22,18 @@ namespace AutoClicker
             var settingsText = File.ReadAllText("settings.json");
             
             Settings.Load(settingsText);
+            
+            KeyboardHook.SetHook();
+            
+            KeyboardHook.KeyPressed += (sender, key) =>
+            {
+                Console.WriteLine($"Key pressed: {key}");
+            };
+            
+            KeyboardHook.KeyReleased += (sender, key) =>
+            {
+                Console.WriteLine($"Key released: {key}");
+            };
         }
     }
 }

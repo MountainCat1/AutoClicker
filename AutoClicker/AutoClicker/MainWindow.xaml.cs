@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.Media;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using AutoClicker.Configuration;
 using AutoClicker.Services;
-using AutoClicker.Input.Enums;
 using AutoClicker.Input.Services;
-using ModifierKeys = AutoClicker.Input.Enums.ModifierKeys;
 
 namespace AutoClicker
 {
@@ -18,8 +14,6 @@ namespace AutoClicker
     {
         private const string ClickActiveSound = "Audio/On.wav";
         private const string ClickInactiveSound = "Audio/Off.wav";
-        private const int ToggleClickerHotkeyId = 1234566;
-        private const int ToggleMaximizeHotkeyId = 1234567;
 
         private readonly IWindowsApiService _windowsApiService;
         private readonly IAutoClickingService _autoClickingService;
@@ -39,18 +33,29 @@ namespace AutoClicker
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            RegisterHotKeys();
+            RegisterKeys();
             InitializeUserInput();
             ToggleMaximize();
         }
 
-        private void RegisterHotKeys()
+        private void RegisterKeys()
         {
-            var windowHandle = new WindowInteropHelper(this).Handle;
-            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, Settings.Singleton.KeyBinds.Toggle, ToggleClickerHotkeyId,
-                ToggleAutoClicker);
-            _windowsApiService.RegisterKey(windowHandle, ModifierKeys.None, Settings.Singleton.KeyBinds.Show, ToggleMaximizeHotkeyId,
-                ToggleMaximize);
+            KeyboardHook.KeyPressed += OnKeyPressed;
+        }
+
+        private void OnKeyPressed(object? sender, Key e)
+        {
+            var keybinds = Settings.Singleton.KeyBinds;
+            
+            if (e == keybinds.Toggle)
+            {
+                ToggleAutoClicker();
+            }
+
+            if (e == keybinds.Show)
+            {
+                ToggleMaximize();
+            }
         }
 
         private void InitializeUserInput()
@@ -114,19 +119,6 @@ namespace AutoClicker
             Console.WriteLine("Toggling auto clicker");
             _autoClickingService.Toggle();
             Console.WriteLine($"Auto clicker is now {(IsActive ? "active" : "inactive")}");
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            UnregisterHotKeys();
-            base.OnClosed(e);
-        }
-
-        private void UnregisterHotKeys()
-        {
-            var windowHandle = new WindowInteropHelper(this).Handle;
-            _windowsApiService.UnregisterKey(windowHandle, ToggleClickerHotkeyId);
-            _windowsApiService.UnregisterKey(windowHandle, ToggleMaximizeHotkeyId);
         }
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)

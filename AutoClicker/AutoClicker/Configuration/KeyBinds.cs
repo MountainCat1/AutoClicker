@@ -1,9 +1,10 @@
-﻿using AutoClicker.Input.Enums;
+﻿using System.Windows.Input;
 
 namespace AutoClicker.Configuration;
 
 public class KeyBinds
 {
-    public KeyCode Toggle { get; set; }
-    public KeyCode Show { get; set; }
+    public Key Toggle { get; set; }
+    public Key HoldActivation { get; set; }
+    public Key Show { get; set; }
 }
