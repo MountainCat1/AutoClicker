@@ -9,7 +9,6 @@
     
     <PropertyGroup>
         <PublishSingleFile>true</PublishSingleFile>
-        <PublishTrimmed>truw</PublishTrimmed> <!-- Disable trimming -->
         <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- Or win-x86, depending on your architecture -->
         <SelfContained>true</SelfContained> <!-- This bundles the .NET runtime -->
         <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile> <!-- Optional: compress the output executable -->
