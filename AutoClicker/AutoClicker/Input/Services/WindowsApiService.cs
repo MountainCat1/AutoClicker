@@ -22,9 +22,6 @@ namespace AutoClicker.Input.Services
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
 
-        private HwndSource _source;
-        
-
         /// <summary>
         /// Set the cursor position to specified coordinates.
         /// </summary>
